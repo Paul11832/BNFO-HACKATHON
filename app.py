@@ -1,22 +1,61 @@
-import dash
-from dash import dcc, html
+from dash import Dash, dcc, html
+import plotly.graph_objects as go
 import plotly.express as px
-import pandas as pd
 
-# Load data
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv')
+# external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
-# Create a bubble map
-fig = px.scatter_mapbox(df, lat="lat", lon="long", size="cnt", color="cnt",
-                        color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,
-                        center=dict(lat=37.5485, lon=-77.4527), zoom=16, # Center on Virginia Commonwealth University
-                        mapbox_style="carto-positron")
+# app = Dash(__name__, external_stylesheets=external_stylesheets)
 
-app = dash.Dash(__name__)
+df = px.data.gapminder().query("year==2007")
 
-app.layout = html.Div([
-    dcc.Graph(figure=fig, style={'height': '800px'})  # Set the height to 800px
-])
+app = Dash(__name__)
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+tab1 = dcc.Tab(
+    label="Tab one",
+    value="tab-1",
+    children=[
+        px.scatter_geo(df, locations="iso_alpha", color="continent",
+                     hover_name="country", size="pop",
+                     projection="natural earth")
+    ],
+)
+
+tab2 = dcc.Tab(
+    label="Tab two",
+    value="tab-2",
+    children=[
+        dcc.Graph(
+            figure={
+                "data": [
+                    {
+                        "x": [1, 2, 3],
+                        "y": [1, 4, 1],
+                        "type": "bar",
+                        "name": "SF",
+                    },
+                    {
+                        "x": [1, 2, 3],
+                        "y": [1, 2, 3],
+                        "type": "bar",
+                        "name": "Montréal",
+                    },
+                ]
+            }
+        )
+    ],
+)
+
+app.layout = html.Div(
+    [
+        html.Link(rel="stylesheet", href="/static/stylesheet.css"),
+        dcc.Tabs(
+            id="tabs-styled-with-inline",
+            value="tab-1",
+            children=[tab1, tab2],
+            vertical=True,
+        )
+    ]
+)
+
+if __name__ == "__main__":
+    app.run(debug=True)
