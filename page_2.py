@@ -5,7 +5,10 @@ import dash_bootstrap_components as dbc
 
 nav = create_navbar()
 
-header = html.H2("Door Event Visualization", style={'text-align': 'center', 'padding': '16px'})
+header = html.H2(
+    "Door Event Visualization", style={"text-align": "center", "padding": "16px"}
+)
+
 
 def create_page_2():
     layout = html.Div(
@@ -25,17 +28,18 @@ def create_page_2():
                                 ],
                                 value="Day",
                                 id="time-interval-dropdown",
-                                style={'margin': '10px'},
                                 clearable=False,
                             ),
                         ],
                         md=3,
-                        style={'background-color': '#f8f9fa'},
+                        style={"d-flex": "flex-row", "background-color": "#f8f9fa"},
                     ),
                     dbc.Col(
                         [
                             header,
-                            dcc.Graph(id="time-series-chart", style={'height': '600px'}),
+                            dcc.Graph(
+                                id="time-series-chart", style={"height": "600px"}
+                            ),
                         ],
                         md=8,
                     ),

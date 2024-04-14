@@ -1,5 +1,6 @@
 import dash
 import dash_bootstrap_components as dbc
+import app as app
 
 # Toggle the themes at [dbc.themes.LUX]
 # The full list of available themes is:

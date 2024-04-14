@@ -1,9 +1,0 @@
-.tabs-vertical .tab {
-  display: block;
-}
-.tabs-vertical .tab-content {
-  margin-left: 200px;
-}
-.tabs-vertical .tab--selected {
-  background-color: #119dff;
-}

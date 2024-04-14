@@ -1,12 +1,11 @@
 from dash import html, dcc
 from dash.dependencies import Input, Output
-from home import create_page_home
+from home import create_page_home, get_final_data
 from page_2 import create_page_2
 from page_3 import create_page_3
 import plotly.express as px
 import pandas as pd
 from app import app
-from home import get_final_data
 
 server = app.server
 app.config.suppress_callback_exceptions = True

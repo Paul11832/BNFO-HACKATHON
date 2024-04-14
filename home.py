@@ -23,8 +23,6 @@ grouped_data.rename(
 # Reorder columns as specified
 final_data = grouped_data[["lat", "lon", "location", "Occurrences", "Month"]]
 
-final_data.to_excel("final_data.xlsx", index=False)
-
 nav = create_navbar()
 
 header = html.H2("RamPantry Map", style={"text-align": "center", "padding": "16px"})
