@@ -90,10 +90,11 @@ def update_figure(selected_month):
         lon="lon",
         color="location",
         size="Occurrences",
-        zoom=16,
-        center={"lat": 37.5483, "lon": -77.4527},
+        zoom=14.25,
+        center={"lat": 37.54430649689593, "lon": -77.44109146702455},
         height=600,
         size_max=30,
+        opacity=1,
     )
     fig.update_layout(mapbox_style="open-street-map")
 
